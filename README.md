@@ -1,62 +1,122 @@
-# NotPixelBot
-🖱️ clicker for [https://t.me/notpx_bot](https://t.me/notpixel/app?startapp=f592067579)
+[![Static Badge](https://img.shields.io/badge/Telegram-Bot%20Link-Link?style=for-the-badge&logo=Telegram&logoColor=white&logoSize=auto&color=blue)](https://t.me/notpixel/app?startapp=f592067579)
+# 🎨AUTO FARM FOR NOTPIXEL 🎨
+
+> [!WARNING]
+> As a payment for this script I take a part of your referrals, to remove this behavior or reduce the percentage of referrals you can customize this variable PERCENT_OF_REFERRALS_FOR_CREATORS_OF_THE_SOFT.
+
+> [!WARNING]
+> I am not responsible for your account. Please consider the potential risks before using this bot.
 
 ## Recommendation before use
-# 🔥🔥 Use PYTHON 3.10 🔥🔥
+
+# 🔥🔥 PYTHON version must be 3.10 🔥🔥
 
 ## Features  
-| Feature                                                     | Supported  |
-|---------------------------------------------------------------|:----------------:|
-| Multithreading                                                |        ✅        |
-| Proxy binding to session                                      |        ✅        |
-| Auto ref                                                      |        ✅        |
-| Auto claim                                                    |        ✅        |
-| Auto paint                                                    |        ✅        |
-| Auto paint specific pixel to get 3x px                        |        ✅        |
-| Auto task                                                     |        ✅        |
-| Auto UPGRADE                                                  |        ✅        |
-| Night mode                                                    |        ✅        |
-| Support for pyrogram .session / Query                         |        ✅        |
-
-## [Settings](https://github.com/wuwku6e6/NotPixel/blob/main/.env-example)
-| Settings | Description |
-|----------------------------|:-------------------------------------------------------------------------------------------------------------:|
-| **API_ID / API_HASH**      | Platform data from which to run the Telegram session (default - android)                                      |       
-| **REF_LINK**               | Put your ref link here (default: my ref link)                                                                 |
-| **X3POINTS** | Auto paint specific pixel to get 3x px (default: True)                                                                      |
-| **AUTO_TASK**              |  Auto do tasks (default: True)                                                                                  |
-| **AUTO_UPGRADE_PAINT_REWARD** | AUTO upgrade paint reward if possible (default: True)                                                                      |
-| **AUTO_UPGRADE_RECHARGE_SPEED** | AUTO upgrade recharge speed if possible (default: True)                                                                      |
-| **AUTO_UPGRADE_RECHARGE_ENERGY** | AUTO upgrade energy limit if possible (default: True)                                                                      |
-| **NIGHT_MODE** | Sleep time for the bot (default: True)                                                                      |
-| **SLEEP_TIME** | Sleep in your timezone for the bot (default: [0, 7] 0am to 7am)                                                                     |
-| **SLEEP_BETWEEN_EACH_ROUND** | Sleep time in second between each round (default: [1000, 1500] 0am to 7am)                                                                     |
-| **USE_PROXY_FROM_FILE**    | Whether to use a proxy from the bot/config/proxies.txt file (True / False)                                    |
+|                      Feature                       | Supported |
+|:--------------------------------------------------:|:---------:|
+|                   Multithreading                   |     ✅     |
+|              Proxy binding to session              |     ✅     |
+|           Support for pyrogram .session            |     ✅     |
+| Auto-register your account with your referral code |     ✅     |
+|                     X3 POINTS                      |     ✅     |
+|                     Auto tasks                     |     ✅     |
+|                     Auto games                     |     ✅     |
+|                    Авто drawing                    |     ✅     |
+|                    Авто upgrade                    |     ✅     |
+|              Авто claiming of reward               |     ✅     |
 
 
+## [Settings](https://github.com/wuwku6e6/notpixel/blob/main/.env-example/)
+|                     Settings                      |                                                         Description                                                          |
+|:-------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------:|
+|               **API_ID / API_HASH**               |                           Platform data from which to run the Telegram session (default - android)                           |
+|            **USE_RANDOM_DELAY_IN_RUN**            |                                                      Name saying itself                                                      |
+|              **RANDOM_DELAY_IN_RUN**              |                                      Random seconds delay for ^^^ (default is [5, 30])                                       |
+|             **SLEEP_TIME_IN_MINUTES**             |                                 Random minutes delay between cycles (default is [120, 180])                                  |
+|                    **USE_REF**                    |                                 Register accounts with ur referral or not (default - False)                                  |
+|                    **REF_ID**                     |                           Your referral argument (comes after app/startapp? in your referral link)                           |
+| **PERCENT_OF_REFERRALS_FOR_CREATORS_OF_THE_SOFT** |                                 Give some referrals for creators of the soft (default - 15)                                  |
+|              **USE_PROXY_FROM_FILE**              |                         Whether to use a proxy from the `bot/config/proxies.txt` file (True / False)                         |
+|               **ENABLE_AUTO_TASKS**               |                                               Enable auto tasks (True / False)                                               |
+|               **ENABLE_AUTO_DRAW**                |                                              Enable auto drawing (True / False)                                              |
+|        **UNSAFE_ENABLE_JOIN_TG_CHANNELS**         |                                [!!UNSAFE!!] Enable auto joining to tg channels (True / False)                                |
+|              **ENABLE_CLAIM_REWARD**              |                                         Enable auto claim of rewards (True / False)                                          |
+|              **ENABLE_AUTO_UPGRADE**              |                                             Enable auto upgrading (True / False)                                             |
+|                  **ENABLE_SSL**                   | Enable verification of ssl certificates (sometimes it can help with SSL: CERTIFICATE_VERIFY_FAILED error)  (default - False) |
+|       **ENABLE_AUTO_JOIN_TO_SQUAD_CHANNEL**       |                                 Enable auto join to squad telegram channel (default - False)                                 |
+|           **ENABLE_AUTO_JOIN_TO_SQUAD**           |                                          Enable auto join to squad (default - True)                                          |
+|                  **SQUAD_SLUG**                   |                               Squad slug [telegram channel slug] (default - notpixel_raiders)                                |
+|               **DISABLE_IN_NIGHT**                |                                          Disable script in night (default - False)                                           |
+|                  **NIGHT_TIME**                   |                                          Night time [from, to] (default - [23, 6])                                           |
+
+## Quick Start 📚
+
+To fast install libraries and run bot - open run.bat on Windows or run.sh on Linux
 
 ## Prerequisites
 Before you begin, make sure you have the following installed:
 - [Python](https://www.python.org/downloads/) **version 3.10**
-- Telegram API_ID and API_HASH (you can get them [here](https://my.telegram.org/auth))
 
 ## Obtaining API Keys
 1. Go to my.telegram.org and log in using your phone number.
 2. Select "API development tools" and fill out the form to register a new application.
 3. Record the API_ID and API_HASH provided after registering your application in the .env file.
 
-## Auto Install/Run
-- Click on RUN.bat to automatically install the required dependencies and run the project
+## Installation
+You can download the [**repository**](https://github.com/wuwku6e6/notpixel) by cloning it to your system and installing the necessary dependencies:
+```shell
+git clone https://github.com/wuwku6e6/notpixel.git
+cd notpixel
+```
 
-## Menual Install/Run
-1. Install the required dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-2. Please edit the name file .env-example to .env and add your API_ID and API_HASH:
-   
-## Usage
-1. Run the bot:
-   ```bash
-   python main.py
-   ```
+Then you can do automatic installation by typing:
+
+Windows:
+```shell
+run.bat
+```
+
+Linux:
+```shell
+run.sh
+```
+
+# Linux manual installation
+```shell
+python3 -m venv venv
+source venv/bin/activate
+pip3 install -r requirements.txt
+cp .env-example .env
+nano .env  # Here you must specify your API_ID and API_HASH, the rest is taken by default
+python3 main.py
+```
+
+You can also use arguments for quick start, for example:
+```shell
+~/notpixel >>> python3 main.py --action (1/2)
+# Or
+~/notpixel >>> python3 main.py -a (1/2)
+
+# 1 - Start drawing 🎨️
+# 2 - Creates a session 👨‍🎨
+```
+
+# Windows manual installation
+```shell
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+copy .env-example .env
+# Here you must specify your API_ID and API_HASH, the rest is taken by default
+python main.py
+```
+
+You can also use arguments for quick start, for example:
+```shell
+~/notpixel >>> python main.py --action (1/2)
+# Or
+~/notpixel >>> python main.py -a (1/2)
+
+# 1 - Start drawing 🎨️
+# 2 - Creates a session 👨‍🎨
+```

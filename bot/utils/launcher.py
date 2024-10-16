@@ -9,31 +9,35 @@ from better_proxy import Proxy
 
 from bot.config import settings
 from bot.utils import logger
-from bot.core.tapper import run_tapper, run_tapper1
-from bot.core.query import run_query_tapper, run_query_tapper1
+from bot.core.tapper import run_tapper
 from bot.core.registrator import register_sessions
-
 
 start_text = """
 
+███╗   ██╗ ██████╗ ████████╗██████╗ ██╗██╗  ██╗███████╗██╗
+████╗  ██║██╔═══██╗╚══██╔══╝██╔══██╗██║╚██╗██╔╝██╔════╝██║
+██╔██╗ ██║██║   ██║   ██║   ██████╔╝██║ ╚███╔╝ █████╗  ██║
+██║╚██╗██║██║   ██║   ██║   ██╔═══╝ ██║ ██╔██╗ ██╔══╝  ██║
+██║ ╚████║╚██████╔╝   ██║   ██║     ██║██╔╝ ██╗███████╗███████╗
+╚═╝  ╚═══╝ ╚═════╝    ╚═╝   ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝
 
-                          __         _____       _____
- _      ____  ___      __/ /____  __/ ___/____ _/ ___/
-| | /| / / / / / | /| / / //_/ / / / __ \/ __ `/ __ \ 
-| |/ |/ / /_/ /| |/ |/ / ,< / /_/ / /_/ / /_/ / /_/ / 
-|__/|__/\__,_/ |__/|__/_/|_|\__,_/\____/\__,_/\____/  
-                                                      
+Github - https://github.com/wuwku6e6
 
-NotPixel BOT V 1.0  by: wuwku6a6
-                                                                                                                                                                                                         
+NEW ENV VARIABLES:
+
+ENABLE_RANDOM_CUSTOM_TEMPLATE=True (Default = True)
+ENABLE_DRAW_CUSTOM_TEMPLATE=True (Default = True)
+CUSTOM_TEMPLATE_ID=355876562 (Default = 355876562)
+
 Select an action:
 
-    1. Run clicker (Session)
-    2. Create session
-    3. Run clicker (Query)
+    1. Start drawing
+    2. Create a session
+
 """
 
 global tg_clients
+
 
 def get_session_names() -> list[str]:
     session_names = sorted(glob.glob("sessions/*.session"))
@@ -82,11 +86,10 @@ async def get_tg_clients() -> list[Client]:
 async def process() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("-a", "--action", type=int, help="Action to perform")
-    parser.add_argument("-m", "--multithread", type=str, help="Enable multi-threading")
+
+    logger.info(f"Detected {len(get_session_names())} sessions | {len(get_proxies())} proxies")
 
     action = parser.parse_args().action
-    ans = parser.parse_args().multithread
-    logger.info(f"Detected {len(get_session_names())} sessions | {len(get_proxies())} proxies")
 
     if not action:
         print(start_text)
@@ -96,68 +99,20 @@ async def process() -> None:
 
             if not action.isdigit():
                 logger.warning("Action must be number")
-            elif action not in ["1", "2", "3"]:
-                logger.warning("Action must be 1, 2 or 3")
+            elif action not in ["1", "2"]:
+                logger.warning("Action must be 1 or 2")
             else:
                 action = int(action)
                 break
 
-    if action == 2:
+    if action == 1:
+        tg_clients = await get_tg_clients()
+
+        await run_tasks(tg_clients=tg_clients)
+
+    elif action == 2:
         await register_sessions()
-    elif action == 1:
-        if ans is None:
-            while True:
-                ans = input("> Do you want to run the bot with multi-thread? (y/n) ")
-                if ans not in ["y", "n"]:
-                    logger.warning("Answer must be y or n")
-                else:
-                    break
 
-        if ans == "y":
-            tg_clients = await get_tg_clients()
-
-            await run_tasks(tg_clients=tg_clients)
-        else:
-            tg_clients = await get_tg_clients()
-            proxies = get_proxies()
-            await run_tapper1(tg_clients=tg_clients, proxies=proxies)
-    elif action == 3:
-        if ans is None:
-            while True:
-                ans = input("> Do you want to run the bot with multi-thread? (y/n) ")
-                if ans not in ["y", "n"]:
-                    logger.warning("Answer must be y or n")
-                else:
-                    break
-        if ans == "y":
-            with open("data.txt", "r") as f:
-                query_ids = [line.strip() for line in f.readlines()]
-            # proxies = get_proxies()
-            await run_tasks_query(query_ids)
-        else:
-            with open("data.txt", "r") as f:
-                query_ids = [line.strip() for line in f.readlines()]
-            proxies = get_proxies()
-
-            await run_query_tapper1(query_ids, proxies)
-
-async def run_tasks_query(query_ids: list[str]):
-    proxies = get_proxies()
-    proxies_cycle = cycle(proxies) if proxies else None
-    account_name = [i for i in range(len(query_ids) + 10)]
-    name_cycle = cycle(account_name)
-    tasks = [
-        asyncio.create_task(
-            run_query_tapper(
-                query=query,
-                proxy=next(proxies_cycle) if proxies_cycle else None,
-                name=f"Account{next(name_cycle)}"
-            )
-        )
-        for query in query_ids
-    ]
-
-    await asyncio.gather(*tasks)
 async def run_tasks(tg_clients: list[Client]):
     proxies = get_proxies()
     proxies_cycle = cycle(proxies) if proxies else None
